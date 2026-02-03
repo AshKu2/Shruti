@@ -46,6 +46,7 @@ section{
   padding:50px 40px;
   text-align:center;
   box-shadow:0 25px 70px rgba(0,0,0,.7);
+  animation:fadeUp 1.2s ease forwards;
 }
 
 h1{
@@ -81,6 +82,12 @@ button{
   font-weight:700;
   font-size:1rem;
   cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 35px rgba(255,105,180,.6);
 }
 
 .grid{
@@ -102,6 +109,11 @@ button{
   margin-bottom:12px;
 }
 
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
 /* floating hearts */
 .heart{
   position:fixed;
@@ -112,49 +124,245 @@ button{
 }
 
 @keyframes float{
-  0%{opacity:0;transform:translateY(0)}
-  10%{opacity:1}
-  100%{opacity:0;transform:translateY(-120vh)}
+  0%{
+    opacity:0;
+    transform:translateY(0) translateX(0) rotate(0deg);
+  }
+  10%{
+    opacity:1;
+  }
+  100%{
+    opacity:0;
+    transform:
+      translateY(-120vh)
+      translateX(calc(-30px + 60px * var(--shake)))
+      rotate(360deg);
+  }
+}
+
+
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+
+footer{
+  margin-top:20px;
+  color:#aaa;
+  font-size:.9rem;
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="https://raw.githubusercontent.com/AshKu2/Shruti/main/Love.mp3" type="audio/mpeg">
+<!-- Background Music -->
+<audio id="bgMusic" loop muted>
+  <source src="love.mp3" type="audio/mpeg">
 </audio>
 
+<canvas id="confetti"></canvas>
+
+<!-- SECTION 1 -->
 <section id="s1">
   <div class="card">
     <h1>Happy Birthday 🎂<br>Happy 1 Month 💗</h1>
     <p>
       Today is special because it celebrates <span class="highlight">you</span>
-      and <span class="highlight">us</span>.
+      and <span class="highlight">us</span>.  
+      One month together and your birthday on the same day — it feels destined.
     </p>
-    <button onclick="go('s2')">Start 💖</button>
+    <button onclick="enableMusic(); go('s2')">Start 💖</button>
   </div>
 </section>
 
+<!-- SECTION 2 -->
 <section id="s2">
   <div class="card">
-    <h2>I Love You 💗</h2>
-    <p>You make my life calmer, brighter, and happier.</p>
-    <button onclick="go('s1')">Back 💞</button>
+    <div class="grid">
+      <div class="tile">
+        <img src="rutish.png" alt="">
+        <p>Your smile brings peace 💗</p>
+      </div>
+      <div class="tile">
+        <img src="rutish2.png" alt="">
+        <p>Pure, real, beautiful ✨</p>
+      </div>
+    </div>
+
+    <p style="margin-top:20px">
+      You are not just cute , You are soooooooo adorable 🥰 just like a CAT also you are calming , 
+      You are the only person who makes me calm in micro seconds 🤌. You are the only person i will fall for.  
+      Talking to you feels safe. Caring for you feels natural.
+    </p>
+
+    <button onclick="go('s3')">Your World 🌷</button>
   </div>
 </section>
 
+<!-- SECTION 3 -->
+<section id="s3">
+  <div class="card">
+    <h2>Things That Feel Like You 💗</h2>
+
+    <div class="grid">
+
+      <div class="tile">
+        <img src="tulip.jpg" alt="">
+        <p>
+          🌷 Tulips remind me of you — soft, calm, and naturally beautiful.  
+          Just looking at them gives the same peace I feel when I think of you.
+        </p>
+      </div>
+
+      <div class="tile">
+        <img src="bmw.jpg" alt="">
+        <p>
+          🚗 BMW feels like your personality — classy, strong, and confident.  
+          Quiet power that doesn’t need to prove anything.
+        </p>
+      </div>
+
+      <div class="tile">
+        <img src="paneer.jpg" alt="">
+        <p>
+          🧀 Paneer ki sabji feels like comfort.  
+          Just like you — warm, familiar, and something I always crave.
+        </p>
+      </div>
+
+      <div class="tile">
+        <img src="fruits.jpg" alt="">
+        <p>
+          🍓 Fruits feel fresh and full of life.  
+          The same way you bring freshness and positivity into my days.
+        </p>
+      </div>
+
+      <div class="tile">
+        <img src="fire.jpg" alt="">
+        <p>
+          🔥 This is your fire — bold, intense, and powerful.  
+          The side of you that makes me admire your strength even more.
+        </p>
+      </div>
+
+      <div class="tile">
+        <img src="cat.jpg" alt="">
+        <p>
+          🤍 This is your cuteness — effortless and heart-melting.  
+          The kind of <span class="highlight">"cat cute"</span>that makes bad days instantly better. 🥰🤌
+        </p>
+      </div>
+
+    </div>
+
+    <button onclick="go('s4')">Our Story 🎢</button>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section id="s4">
+  <div class="card">
+    <h2>Our Roller Coaster 🎢</h2>
+
+    <img src="rollercoaster.jpeg" style="width:100%;border-radius:22px;margin:20px 0">
+
+    <p>
+      When I met you, I said <span class="highlight">“I am a human” 🤣</span>.  
+      You overthought for a few days…  
+      Then you came back.  
+      Then there was a time when you weren’t satisfied with me,
+      because I didn’t understand you well. 
+    </p>
+
+    <p style="margin-top:15px">
+      I promise you — from now on,  
+      I will take care of you with my 🫡<span class="highlight">200%</span>.
+    </p>
+
+    <p style="margin-top:15px">
+      This journey is just like a roller coaster…
+    </p>
+
+    <p class="highlight" style="font-size:1.2rem;margin-top:10px">
+      And I wanna live in this roller coaster forever with you 😘💋💋.
+    </p>
+
+    <button onclick="go('s5')">One Last Thing 💞</button>
+  </div>
+</section>
+
+<!-- SECTION 5 -->
+<section id="s5">
+  <div class="card">
+    <h2>I’m Sorry 💗</h2>
+
+    <p>
+      I’m sorry if I didn’t understand you 😔 properly before.  
+      I was nervous, scared of losing you, and still learning.
+    </p>
+
+    <p style="margin-top:15px">
+      Please know this — I care deeply, I respect you,
+      and I truly want to be better for you. 😌
+      I want to make your life much better. 🫂🤗
+    </p>
+
+    <p class="highlight" style="margin-top:15px">
+      Happy Birthday & Happy One Month 💗
+    </p>
+
+    <footer>
+      Made with love — always yours. 💋💋
+    </footer>
+    <button onclick="go('s6')">For You 💝</button>
+  </div>
+</section>
+
+
+<!-- SECTION 6 -->
+<section id="s6">
+  <div class="card">
+    <h2>I LOVE YOUUU 😌💝</h2>
+
+    <img 
+      src="rutish3.png" 
+      alt="For you"
+      style="
+        width:100%;
+        max-width:420px;
+        border-radius:26px;
+        margin:25px auto;
+        display:block;
+        box-shadow:0 15px 40px rgba(255,105,180,.4);
+      "
+    >
+
+    <p>
+      This is how I see you —  
+      cute, precious, and made with love.  
+      Every little detail reminds me of you 💗
+      I just wanna live with you <span class="highlight">"FOREVER"</span>
+    </p>
+
+    <button onclick="go('s1')">Back to Start 💞</button>
+  </div>
+</section>
+
+
 <script>
-// smooth scroll
+/* smooth scroll */
 function go(id){
   document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-// music autoplay after first interaction
+/* background music */
 const bgMusic = document.getElementById("bgMusic");
 
 function enableMusic(){
+  bgMusic.muted = false;
   bgMusic.volume = 0.35;
   bgMusic.play().catch(()=>{});
 }
@@ -162,16 +370,48 @@ function enableMusic(){
 document.addEventListener("click", enableMusic, { once:true });
 document.addEventListener("touchstart", enableMusic, { once:true });
 
-// floating hearts
-setInterval(()=>{
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "❤";
-  h.style.left = Math.random()*100 + "vw";
-  h.style.fontSize = (14 + Math.random()*24) + "px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},450);
+/* floating hearts logic */
+let heartInterval = null;
+
+function startHearts(speed){
+  if (heartInterval) clearInterval(heartInterval);
+
+  heartInterval = setInterval(() => {
+
+    // 🔥 create MULTIPLE hearts per interval
+    for(let i = 0; i < 3; i++){
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.fontSize = (14 + Math.random() * 26) + "px";
+
+      // 🎯 random shake factor
+      h.style.setProperty("--shake", Math.random());
+
+      h.innerText = "❤";
+      document.body.appendChild(h);
+
+      setTimeout(() => h.remove(), 6500);
+    }
+
+  }, speed);
+}
+
+
+
+/* normal hearts */
+startHearts(450);
+
+/* MORE HEARTS ON LAST SLIDE 💗 */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.target.id === "s5") {
+      startHearts(450); // 🔥 much more hearts
+    }
+  });
+},{ threshold:0.6 });
+
+observer.observe(document.getElementById("s5"));
 </script>
 
 </body>
