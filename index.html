@@ -22,6 +22,18 @@
   padding:0;
   box-sizing:border-box;
 }
+  
+<script>
+const bgMusic = document.getElementById("bgMusic");
+
+function startMusic() {
+  bgMusic.volume = 0.35;
+  bgMusic.play().catch(() => {});
+}
+
+document.addEventListener("click", startMusic, { once: true });
+document.addEventListener("touchstart", startMusic, { once: true });
+</script>
 
 body{
   font-family:'Poppins',sans-serif;
@@ -30,6 +42,10 @@ body{
   overflow-x:hidden;
 }
 
+<audio id="bgMusic" loop>
+  <source src="https://raw.githubusercontent.com/AshKu2/Shruti/main/Love.mp3" type="audio/mpeg">
+</audio>
+  
 section{
   min-height:100vh;
   display:flex;
@@ -429,5 +445,6 @@ document.addEventListener("touchstart", enableMusic, { once: true });
 
 </body>
 </html>
+
 
 
