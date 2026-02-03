@@ -414,6 +414,20 @@ const observer = new IntersectionObserver(entries => {
 observer.observe(document.getElementById("s5"));
 </script>
 
+<script>
+const bgMusic = document.getElementById("bgMusic");
+
+function enableMusic() {
+  bgMusic.volume = 0.35;
+  bgMusic.play().catch(() => {});
+}
+
+document.addEventListener("click", enableMusic, { once: true });
+document.addEventListener("touchstart", enableMusic, { once: true });
+</script>
+
+
 </body>
 </html>
+
 
